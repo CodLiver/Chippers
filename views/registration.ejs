@@ -1,0 +1,43 @@
+<html>
+<head>
+  <title>registration</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="jquery-3.2.1.min.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+<h1>Register</h1>
+
+  <!-- register  -->
+  <form action='/register' form="form" method="post">
+    <fieldset>
+
+      <label for="username" required>Userame:</label>
+      <input type="text" id="user" name="username" placeholder="Enter username" />
+      <br>
+      <label for="password" required>Password:</label>
+      <input type="password" id="pass" name="password" placeholder="Enter password" />
+      <br>
+      <label for="email" required>Email:</label>
+      <input type="email" id="pass" name="email" placeholder="Enter email" />
+      <br>
+      <input type="submit"  value="Sign up!" />
+
+      <span style="color:red;font-weight:bold"><%= errorMessage %></span>
+    </fieldset>
+  </form>
+    <form action='/forgetPassword' form="form" method="post">
+      <fieldset>
+      <input type="submit"  value="forget password!" />
+    </fieldset>
+  </form>
+
+
+
+</body>
+
+
+
+</html>

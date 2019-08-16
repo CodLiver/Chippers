@@ -1,0 +1,51 @@
+<html>
+<head>
+  <title>Main Page</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+  <script src="jquery-3.2.1.min.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+<h1>this is a page</h1>
+  <form action="/signout" form="form" method="post"><input type="submit" value="Signout"></form>
+
+  <a id="goUser"> go to userpage</a>
+  <div class="userPosts"></div>
+
+</body>
+
+
+<script type="text/javascript">
+//data[i].time.substring(0,data[i].time.length-5 )
+
+$.get("/json/posts/all/VyRghZo5CmTU4uIocL4G", function(data, status){
+
+          $("#goUser").attr("href", "/writer/"+Cookies.get('username'))
+
+          var ESC_MAP = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#39;'
+        };
+
+        function escapeHTML(s, forAttribute) {
+            return s.replace(forAttribute ? /[&<>'"]/g : /[&<>]/g, function(c) {
+                return ESC_MAP[c];
+            });
+        }
+        for (var i = data.length-1; i > -1; i--) {
+          d = new Date(data[i].time).toString();
+          d=d.substring(0,d.length-29);
+              $( "<h1><a href='/post/"+encodeURI(data[i].username)+"/"+encodeURI(escapeHTML(data[i].postident,true))+"/"+encodeURI(escapeHTML(data[i].postTitle,true))+"/'>"+escapeHTML(data[i].postTitle,true)+"</a></h1>" ).appendTo( ".userPosts" );
+          $( "<p>"+escapeHTML(data[i].content,true)+" by "+data[i].username+" at "+d+"</p>" ).appendTo( ".userPosts" );
+        }
+    });
+</script>
+
+
+</html>

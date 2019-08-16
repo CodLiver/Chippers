@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script src="jquery-3.2.1.min.js"></script>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <form action="/signout" form="form" method="post"><input type="submit" value="Signout"></form>
+    <a href="/write/blog">Write a blog!</a>
+    <a href="/changePassword">change password</a>
+    <a href="/main">mainpage</a>
+
+    <p id="user">hello user </p>
+
+    <div class="userPosts"></div>
+
+    <script type="text/javascript">
+    $('#user').append(Cookies.get('username'));
+    var ESC_MAP = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+    };
+
+    function escapeHTML(s, forAttribute) {
+        return s.replace(forAttribute ? /[&<>'"]/g : /[&<>]/g, function(c) {
+            return ESC_MAP[c];
+        });
+    }
+
+    $.get("/json/posts/all/"+window.location.pathname.split('/')[2]+"/VyRghZo5CmTU4uIocL4G", function(data, status){
+            for (var i = 0; i < data.length; i++) {
+
+              // $("<a href='/post/'"+window.location.pathname.split('/')[2]+"/"+escapeHTML(data[i].identifier,true)+"/"+urlencoded(escapeHTML(data[i].title,true))+"><div id='"+i+"post'></div></a>").appendTo( ".userPostsAll" );
+              $( "<h1><a href='/post/"+encodeURI(window.location.pathname.split('/')[2])+"/"+encodeURI(escapeHTML(data[i].postident,true))+"/"+encodeURI(escapeHTML(data[i].postTitle,true))+"/'>"+escapeHTML(data[i].postTitle,true)+"</a></h1>" ).appendTo( ".userPosts" );
+              $( "<p>"+escapeHTML(data[i].content,true)+"</p>" ).appendTo( ".userPosts" );
+              // <a href='/post/'"+window.location.pathname.split('/')[2]+"/"
+            }
+        });
+    </script>
+<!-- try to do dummy func and call it. -->
+  </body>
+  <script type="text/javascript">
+  </script>
+</html>

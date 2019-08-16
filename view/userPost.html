@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script src="jquery-3.2.1.min.js"></script>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <form action="/signout" form="form" method="post"><input type="submit" value="Signout"></form>
+    <a href="/write/blog">Write a blog!</a>
+
+    <p id="user">post hello user </p>
+    <h1 id="titleP"></h1>
+    <p id="postP"></p>
+    <script type="text/javascript">
+    var ESC_MAP = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+    };
+
+    function escapeHTML(s, forAttribute) {
+        return s.replace(forAttribute ? /[&<>'"]/g : /[&<>]/g, function(c) {
+            return ESC_MAP[c];
+        });
+    }
+    $.get("/json/post/"+window.location.pathname.split('/')[2]+"/"+window.location.pathname.split('/')[3]+"/VyRghZo5CmTU4uIocL4G", function(data, status){
+            $('#titleP').text(data[0].postTitle);
+            $('#postP').text(data[0].content);
+        });
+    $('#user').append(Cookies.get('username'));
+    </script>
+<!-- try to do dummy func and call it. -->
+  </body>
+  <script type="text/javascript">
+  </script>
+</html>

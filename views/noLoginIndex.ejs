@@ -1,0 +1,87 @@
+
+ <% include header %>
+
+<body>
+<div id="wrapper">
+
+
+<!--
+================================================== -->
+ <% include menu %>
+<div class="clearfix"></div>
+<head>
+  <title>Main Page</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+  <div class="container">
+
+		<div class="sixteen columns">
+
+<h1><b>Welcome to Chippers</b></h1>
+  <!-- login  -->
+  <form action='/login' form="form" method="post">
+    <fieldset>
+<div class="three columns">
+
+
+      <label for="username" required>Userame:</label>
+      <input type="text" id="user" name="username" placeholder="Enter username" value="<%= username %>" />
+      <br>
+      <label for="password" required>Password:</label>
+      <input type="password" id="pass" name="password" placeholder="Enter password" />
+
+      <br>
+      <input type="submit"  value="Login!" />
+  <span style="color:red;font-weight:bold"><%= errorMessage %></span>
+</div>
+    </fieldset>
+  </form>
+  <!-- register  -->
+  <a href="/registration">REGISTER</a>
+
+  <div class="userPosts"></div>
+
+  <script type="text/javascript">
+    $.get("/json/posts/all/VyRghZo5CmTU4uIocL4G", function(data, status){
+              var ESC_MAP = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#39;'
+            };
+
+            function escapeHTML(s, forAttribute) {
+                return s.replace(forAttribute ? /[&<>'"]/g : /[&<>]/g, function(c) {
+                    return ESC_MAP[c];
+                });
+            }
+            for (var i = data.length-1; i > -1; i--) {
+              d = new Date(data[i].time).toString();
+              d=d.substring(0,d.length-29);
+                $( "<h1><a href='/post/"+encodeURI(data[i].username)+"/"+encodeURI(escapeHTML(data[i].postident,true))+"/"+encodeURI(escapeHTML(data[i].postTitle,true))+"/'>"+escapeHTML(data[i].postTitle,true)+"</a></h1>" ).appendTo( ".userPosts" );
+              $( "<p>"+escapeHTML(data[i].content,true)+" by "+data[i].username+" at "+d+"</p>" ).appendTo( ".userPosts" );
+            }
+        });
+
+  </script>
+</div>
+
+</div>
+<div class="margin-top-15"></div>
+ <% include footer %>
+
+<!-- Back To Top Button -->
+<div id="backtotop"><a href="#"></a></div>
+</div>
+<!-- Wrapper / End -->
+
+</body>
+
+
+
+</html>

@@ -1,0 +1,33 @@
+<html>
+<head>
+  <title>change password</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="jquery-3.2.1.min.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+<h1>this is a page</h1>
+  <!-- login  -->
+  <form action='/submit/changePassword' form="form" method="post">
+    <fieldset>
+
+      <label for="oldPassword" required>Old Password:</label>
+      <input type="password" id="oldPassword" name="oldPassword" placeholder="Old Pass" />
+      <br>
+      <label for="newPassword" required>New Password:</label>
+      <input type="password" id="newPassword" name="newPassword" placeholder="New Pass" />
+      <br>
+      <label for="retype" required>Retype New Password:</label>
+      <input type="password" id="retype" name="retype" placeholder="New Pass" />
+      <!-- make them big  -->
+      <br>
+      <input type="submit"  value="Change Password" />
+<span style="color:blue;font-weight:bold"><%= name %></span>
+    </fieldset>
+  </form>
+
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<html>
+<head>
+  <title>Write a blog</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+  <script src="jquery-3.2.1.min.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+<h1>this is a page</h1>
+  <a href="/main">mainpage</a>
+  <a id="goUser"> go to userpage</a>
+  <!-- login  -->
+  <form action='/submit/blog' form="form" method="post">
+    <fieldset>
+
+      <label for="title" required>Title:</label>
+      <input type="text" id="title" name="title" placeholder="Title of the blog" />
+      <br>
+      <label for="content" required>Content:</label>
+      <input type="text" id="content" name="content" placeholder="What do you want to share to your audience" />
+      <br>
+      <input type="checkbox" name="visibility" value="1" checked> do you want it to be visible to general audience?
+      <!-- make them big  -->
+      <br>
+      <input type="submit"  value="POST!" />
+
+    </fieldset>
+  </form>
+
+</body>
+<script>
+$("#goUser").attr("href", "/writer/"+Cookies.get('username'));
+</script>
+
+</html>

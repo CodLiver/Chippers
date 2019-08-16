@@ -1,0 +1,62 @@
+
+ <% include header %>
+
+<body>
+<div id="wrapper">
+
+
+<!--
+================================================== -->
+ <% include menu %>
+<div class="clearfix"></div>
+
+<!-- Banner
+================================================== -->
+<div  id="banner"class=" parallax background" style="background-image: url(./images/banner-home-02.jpg);height:550px;width:100%;" data-diff="-200"
+ >
+
+	<div class="container">
+
+		<div class="sixteen columns">
+
+      <br>
+      <div class="search-container" style="margin-bottom: : 0px;">
+
+        <form  action="browse-jobs" method="post" >
+
+
+         <div class="browse-jobs" style="margin-top:-80px;">
+            Browse job offers by <a href="browse-categories"> category</a> or <a href="#">location</a>
+        <br><br>  </div>
+
+
+        <div class="seven columns" ><label for="jobtitleId" >
+        	<input type="text" style="width:500px" class="ico-01" id="jobtitleId" name="title" placeholder='Job title ? e.g. "accountant"' value=""/>
+            </label>
+        </div >
+        <div class="seven columns  ">
+          <label for="locationId">
+          <input type="text" style="width:500px"class="ico-02" id="locationId" name="location" placeholder="city, province or region" value=""/>
+          </label>
+        </div>
+    		<button   ><i class="fa fa-search"></i></button>
+</form>
+
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<!-- Footer
+================================================== -->
+<div class="margin-top-15"></div>
+ <% include footer %>
+
+<!-- Back To Top Button -->
+<div id="backtotop"><a href="#"></a></div>
+</div>
+<!-- Wrapper / End -->
+
+</body>
+<!-- </html> -->
